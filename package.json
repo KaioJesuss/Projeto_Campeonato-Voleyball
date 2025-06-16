@@ -1,0 +1,24 @@
+{
+  "name": "projeto_campeonato-voleyball",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KaioJesuss/Projeto_Campeonato-Voleyball.git"
+  },
+  "author": "Kaio Jesus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KaioJesuss/Projeto_Campeonato-Voleyball/issues"
+  },
+  "homepage": "https://github.com/KaioJesuss/Projeto_Campeonato-Voleyball#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
