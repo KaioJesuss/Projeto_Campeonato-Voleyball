@@ -1187,6 +1187,7 @@ app.get("/cadastrojogadores", verificarAutenticacao, (requisicao, resposta) =>{
 
             const jogadoresDaEquipe = listajogadores.filter(j => j.equipe === equipe);
             if (jogadoresDaEquipe.length >= 6) {
+
                 return resposta.send(`
                     <html><body>
                         <p style="color:red;">A equipe "${equipe}" já possui 6 jogadores cadastrados.</p>
@@ -1396,7 +1397,7 @@ app.get("/cadastrojogadores", verificarAutenticacao, (requisicao, resposta) =>{
                                             conteudo += `
                                                 <label for="genero" class="mb-1">Gênero</label>
                                                 <select class="form-control is-invalid" id="genero" name="genero">
-                                                    <option value="" disabled selected>Selecione</option>
+                                                    <option value="" disabled ${!genero ? "selected" : ""}>Selecione</option>
                                                     <option value="Masculino">Masculino</option>
                                                     <option value="Feminino">Feminino</option>
                                                     <option value="Outro">Outro</option>
@@ -1407,7 +1408,7 @@ app.get("/cadastrojogadores", verificarAutenticacao, (requisicao, resposta) =>{
                                             conteudo += `
                                                 <label for="genero" class="mb-1">Gênero</label>
                                                 <select class="form-control" id="genero" name="genero">
-                                                    <option value="" disabled>Selecione</option>
+                                                    <option value="" disabled ${!genero ? "selected" : ""}>Selecione</option>
                                                     <option value="Masculino" ${genero === "Masculino" ? "selected" : ""}>Masculino</option>
                                                     <option value="Feminino" ${genero === "Feminino" ? "selected" : ""}>Feminino</option>
                                                     <option value="Outro" ${genero === "Outro" ? "selected" : ""}>Outro</option>
