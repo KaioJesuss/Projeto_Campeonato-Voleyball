@@ -982,6 +982,7 @@ app.get("/listaequipes",verificarAutenticacao, (requisicao, resposta) => {
                                         </table>
                                      </div>
                                 <a class="btn btn-secondary" href="/cadastroequipes">Continuar Cadastrando</a>
+                                <a class="btn btn-secondary" href="/menu">Voltar</a>
                             </div>
                         </body>
                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
@@ -1187,12 +1188,186 @@ app.get("/cadastrojogadores", verificarAutenticacao, (requisicao, resposta) =>{
 
             const jogadoresDaEquipe = listajogadores.filter(j => j.equipe === equipe);
             if (jogadoresDaEquipe.length >= 6) {
-
+                    let opcoesEquipes = ""
+                    for (let i = 0; i < listaequipes.length; i++) {
+                        opcoesEquipes += `<option value="${listaequipes[i].nomeequipe}">${listaequipes[i].nomeequipe}</option>`;
+                    }
                 return resposta.send(`
-                    <html><body>
-                        <p style="color:red;">A equipe "${equipe}" já possui 6 jogadores cadastrados.</p>
-                        <a href="/cadastrojogadores">Voltar</a>
-                    </body></html>
+                                    <html lang="pt-br">
+                    <head>
+                        <meta charset="UTF-8">
+                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+                        <title>Página Inicial</title>
+                        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+                            <style>
+                                body {
+                                        background: linear-gradient(to bottom right, rgb(0, 0, 0), #042f31);
+                                        font-family: 'Segoe UI', sans-serif;
+                                        color: #ffffff;
+                                        margin: 0;
+                                        padding: 20px 0;
+                                    }
+
+                                    h2 {
+                                        color: #81fcff;
+                                        text-align: center;
+                                        font-weight: bold;
+                                        margin-bottom: 30px;
+                                    }
+
+                                    .container {
+                                        max-width: 900px;
+                                        background-color: #002b2b;
+                                        border-radius: 15px;
+                                        padding: 30px 25px;
+                                        box-shadow: 0 0 20px rgba(129, 252, 255, 0.3);
+                                        border: 1px solid #81fcff;
+                                    }
+
+                                    label {
+                                        color: #81fcff;
+                                        font-weight: 500;
+                                    }
+
+                                    .form-control {
+                                        background-color: transparent;
+                                        color: #ffffff;
+                                        border-radius: 8px;
+                                        padding: 8px 12px;
+                                        transition: 0.3s;
+                                        border: 1px solid #81fcff;
+                                    }
+
+                                    .form-control::placeholder {
+                                        color: rgb(255, 255, 255);
+                                    }
+
+                                    .form-control:focus {
+                                        outline: none;
+                                        box-shadow: 0 0 5px #81fcff;
+                                        border-color: #81fcff;
+                                    }
+
+                                    .form-control.is-invalid {
+                                        border-color: #dc3545 !important;
+                                    }
+
+                                    .form-control.is-valid {
+                                        border-color: #28a745 !important;
+                                    }
+
+                                    .invalid-feedback {
+                                        color: #dc3545;
+                                        font-size: 0.875em;
+                                    }
+
+                                    select.form-control {
+                                        background-color: transparent;
+                                        color: #ffffff;
+                                    }
+
+                                    .btn {
+                                        width: 100%;
+                                        padding: 10px;
+                                        border-radius: 8px;
+                                        font-weight: bold;
+                                        transition: 0.3s ease;
+                                        margin-bottom: 10px;
+                                    }
+
+                                    .btn-primary {
+                                        background-color: #81fcff;
+                                        color: #002b2b;
+                                        border: none;
+                                    }
+
+                                    .btn-primary:hover {
+                                        background-color: #5ee7ea;
+                                        color: #001f1f;
+                                    }
+
+                                    .btn-secondary {
+                                        background-color: transparent;
+                                        border: 1px solid #81fcff;
+                                        color: #81fcff;
+                                    }
+
+                                    .btn-secondary:hover {
+                                        background-color: #81fcff;
+                                        color: #001f1f;
+                                    }
+                            </style>
+                        
+                    </head>
+                    <body>
+                        <div class="container w-85 mb-10">
+                            <div class="Legenda w-20 mb-5 mt-5">
+                                <h2>Cadastro de Jogador</h2>
+                            </div>
+
+                            <form method="POST" action="/cadastrojogadores" class="row g-1 border p-2">
+
+                                <div class="form-row row">
+                                    <div class="form-group col-md-8 mb-1">
+                                        <label for="nomejogador" class="mb-1">Nome do Jogador</label>
+                                        <input type="text" class="form-control" id="nomejogador" name="nomejogador"  placeholder="Nome completo">
+                                    </div>
+                                </div>
+
+                                <div class="form-row row">
+                                    <div class="form-group col-md-4 mb-1">
+                                        <label for="numero" class="mb-1">Número da Camisa</label>
+                                        <input type="number" class="form-control" id="numero" name="numero" placeholder="Ex: 10" min="1">
+                                    </div>
+
+                                    <div class="form-group col-md-4 mb-1">
+                                        <label for="datanascimento" class="mb-1">Data de Nascimento</label>
+                                        <input type="date" class="form-control" id="datanascimento" name="datanascimento" >
+                                    </div>
+                                </div>
+
+                                <div class="form-row row">
+                                    <div class="form-group col-md-4 mb-1">
+                                        <label for="altura" class="mb-1">Altura (cm)</label>
+                                        <input type="number" class="form-control" id="altura" name="altura"  placeholder="Ex: 180" min="100">
+                                    </div>
+
+                                    <div class="form-group col-md-4 mb-1">
+                                        <label for="genero" class="mb-1">Gênero</label>
+                                        <select class="form-control" id="genero" name="genero" >
+                                            <option value="" disabled selected>Selecione</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Feminino">Feminino</option>
+                                            <option value="Outro">Outro</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row row">
+                                    <div class="form-group col-md-6 mb-1">
+                                        <label for="posicao" class="mb-1">Posição</label>
+                                        <input type="text" class="form-control" id="posicao" name="posicao"  placeholder="Ex: Ponteiro, Central, etc.">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group col-md-4 mb-1">
+                                    <label for="equipe" class="mb-1">Equipe</label>
+                                    <select class="form-control" id="equipe" name="equipe" >
+                                        <option value="" disabled selected>Selecione uma equipe</option>
+                                        ${opcoesEquipes}
+                                    </select>
+                                </div>
+                                <p style="color:red;">A equipe "${equipe}" já possui 6 jogadores cadastrados.</p>
+                                <button class="btn btn-primary" type="submit">Cadastrar</button>
+                                <a class="btn btn-secondary" href="/menu">Voltar</a>
+                            </form>
+                        </div>
+                    </body>
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+                </html>
+
                 `);
             }
             listajogadores.push({
@@ -1473,6 +1648,7 @@ app.get("/cadastrojogadores", verificarAutenticacao, (requisicao, resposta) =>{
                                         conteudo += `
                                                                 </div>
                                                             </div>
+                                                            
                                                             <button class="btn btn-primary" type="submit">Cadastrar</button>
                                                             <a class="btn btn-secondary" href="/menu">Voltar</a>
                                                         </form>
@@ -1597,7 +1773,7 @@ app.get("/listajogadores", verificarAutenticacao, (requisicao, resposta) => {
                                                 </tr>
                                             </thead>
                                             <tbody>`;
-                                                for(let i=0; i < listaequipes.length; i++)
+                                                for(let i=0; i < listajogadores.length; i++)
                                                 {
                                                     conteudo = conteudo + `
                                                     </tr>
@@ -1614,6 +1790,7 @@ app.get("/listajogadores", verificarAutenticacao, (requisicao, resposta) => {
                                         </table>
                                      </div>
                                 <a class="btn btn-secondary" href="/cadastrojogadores">Continuar Cadastrando</a>
+                                <a class="btn btn-secondary" href="/menu">Voltar</a>
                             </div>
                         </body>
                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
