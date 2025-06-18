@@ -16,7 +16,7 @@ app.use(session({
         resave: false,
         saveUninitialized: false,
         cookie: {
-            maxAge: 1000 * 60 * 15,
+            maxAge: 1000 * 60 * 30,
             httpOnly: true,
             secure: false
         }
@@ -35,7 +35,7 @@ app.get("/", (requisicao, resposta)=>{
                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
                             <style>
                             body {
-                                background-color: #094043;
+                                background: linear-gradient(to bottom right,rgb(0, 0, 0), #042f31);
                                 color: #ffffff;
                                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                             }
@@ -190,7 +190,7 @@ app.post("/Login", (requisicao, resposta)=>{
                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
                             <style>
                             body {
-                                background-color: #094043;
+                                background: linear-gradient(to bottom right,rgb(0, 0, 0), #042f31);
                                 color: #ffffff;
                                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                             }
@@ -415,19 +415,26 @@ app.get("/menu", verificarAutenticacao, (requisicao, resposta) => {
                                         align-items: center;
                                     }
 
-                                    .imagem-fundo {
-                                        background-image: url('/fundo.jpg'); 
-                                        background-size: cover;
-                                        background-position: center;
-                                        background-repeat: no-repeat;
-                                        height: calc(100vh - 70px);
-                                        width: 100%;
+                                    body
+                                    {
+                                        background: linear-gradient(to bottom right,rgb(0, 0, 0), #042f31);
                                     }
 
                                     @media (max-width: 768px) {
                                         .navbar-nav .nav-item span {
                                             margin: 10px 0;
                                         }
+                                    }
+
+                                    .titulo-principal h1 {
+                                        font-family: 'Verdana', 'Segoe UI', sans-serif;
+                                        color: #81fcff;
+                                        font-size: 3.5rem;
+                                        font-weight: bold;
+                                        text-transform: uppercase;
+                                        letter-spacing: 2px;
+                                        text-shadow: 2px 2px 10px rgba(129, 252, 255, 0.3);
+                                        margin-top: 40px;
                                     }
                             </style>
 
@@ -448,6 +455,8 @@ app.get("/menu", verificarAutenticacao, (requisicao, resposta) => {
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="/cadastroequipes">Cadastro de Equipes</a></li>
                                                         <li><a class="dropdown-item" href="/cadastrojogadores">Cadastro de Jogadores</a></li>
+                                                        <li><a class="dropdown-item" href="/listaequipes">Equipes Cadastradas</a></li>
+                                                        <li><a class="dropdown-item" href="/listajogadores">Jogadores Cadastrados</a></li>
                                                     </ul>
      
                                                 </li>
@@ -462,12 +471,12 @@ app.get("/menu", verificarAutenticacao, (requisicao, resposta) => {
                                                     </li>
                                             </ul>
                                     </div>
-                                </div>
-                            </nav>
-
-                                <div class="imagem-fundo">
                                     
                                 </div>
+                            </nav>
+                                        <div class="text-center titulo-principal mt-5">
+                                            <h1>CAMPEONATO DE VOLEYBALL 2025</h1>
+                                        </div>
                         </body>
                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
                 </html>
@@ -487,7 +496,7 @@ app.get("/cadastroequipes", verificarAutenticacao, (requisicao, resposta) =>{
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
                             <style>
                             body {
-                                background-color: #042f31;
+                                background: linear-gradient(to bottom right,rgb(0, 0, 0), #042f31);
                                 font-family: 'Segoe UI', sans-serif;
                                 color: #ffffff;
                                 margin: 0;
@@ -670,7 +679,7 @@ app.post("/cadastroequipes", verificarAutenticacao, (requisicao, resposta) => {
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
                             <style>
                                 body {
-                                    background-color: #042f31;
+                                    background: linear-gradient(to bottom right,rgb(0, 0, 0), #042f31);
                                     font-family: 'Segoe UI', sans-serif;
                                     color: #ffffff;
                                     margin: 0;
@@ -800,13 +809,13 @@ app.post("/cadastroequipes", verificarAutenticacao, (requisicao, resposta) => {
                                                 if (!nomeequipe) {
                                                 conteudo = conteudo + `
                                                 <label for="inputequipe" class="mb-1">Nome da Equipe</label>
-                                                <input type="text" class="form-control is-invalid" id="nomeequipe" name="equipe" value="${nomeequipe || ''}" placeholder="Nome da Equipe">
+                                                <input type="text" class="form-control is-invalid" id="nomeequipe" name="nomeequipe" value="${nomeequipe || ''}" placeholder="Nome da Equipe">
                                                     <span class="text-danger">Insira o nome da equipe</span>
                                                 `;
                                                 } else {
                                                 conteudo = conteudo + `
                                                 <label for="inputequipe" class="mb-1">Nome da Equipe</label>
-                                                <input type="text" class="form-control" id="nomeequipe" name="equipe" value="${nomeequipe}" placeholder="Nome da Equipe">
+                                                <input type="text" class="form-control" id="nomeequipe" name="nomeequipe" value="${nomeequipe}" placeholder="Nome da Equipe">
                                                 `;
                                                 }
                                         conteudo = conteudo + `</div>
@@ -997,88 +1006,101 @@ app.get("/cadastrojogadores", verificarAutenticacao, (requisicao, resposta) =>{
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
                             <style>
                                 body {
-                                    background: linear-gradient(to bottom right, #042f31, #094043);
-                                    font-family: 'Segoe UI', sans-serif;
-                                    color: #ffffff;
-                                    margin: 0;
-                                    padding: 20px 0;
-                                }
+                                        background: linear-gradient(to bottom right, rgb(0, 0, 0), #042f31);
+                                        font-family: 'Segoe UI', sans-serif;
+                                        color: #ffffff;
+                                        margin: 0;
+                                        padding: 20px 0;
+                                    }
 
-                                h2 {
-                                    color: #81fcff;
-                                    text-align: center;
-                                    font-weight: bold;
-                                    margin-bottom: 30px;
-                                }
+                                    h2 {
+                                        color: #81fcff;
+                                        text-align: center;
+                                        font-weight: bold;
+                                        margin-bottom: 30px;
+                                    }
 
-                                .container {
-                                    max-width: 750px;
-                                    background-color: #002b2b;
-                                    border-radius: 15px;
-                                    padding: 30px 25px;
-                                    box-shadow: 0 0 20px rgba(129, 252, 255, 0.3);
-                                    border: 1px solid #81fcff;
-                                }
+                                    .container {
+                                        max-width: 900px;
+                                        background-color: #002b2b;
+                                        border-radius: 15px;
+                                        padding: 30px 25px;
+                                        box-shadow: 0 0 20px rgba(129, 252, 255, 0.3);
+                                        border: 1px solid #81fcff;
+                                    }
 
-                                label {
-                                    color: #81fcff;
-                                    font-weight: 500;
-                                }
+                                    label {
+                                        color: #81fcff;
+                                        font-weight: 500;
+                                    }
 
-                                .form-control {
-                                    background-color: transparent;
-                                    border: 1px solid #81fcff;
-                                    color: #ffffff;
-                                    border-radius: 8px;
-                                    padding: 8px 12px;
-                                    transition: 0.3s;
-                                }
+                                    .form-control {
+                                        background-color: transparent;
+                                        color: #ffffff;
+                                        border-radius: 8px;
+                                        padding: 8px 12px;
+                                        transition: 0.3s;
+                                        border: 1px solid #81fcff;
+                                    }
 
-                                .form-control::placeholder {
-                                    color:rgb(255, 255, 255);
-                                }
+                                    .form-control::placeholder {
+                                        color: rgb(255, 255, 255);
+                                    }
 
-                                .form-control:focus {
-                                    outline: none;
-                                    box-shadow: 0 0 5px #81fcff;
-                                    border-color: #81fcff;
-                                }
+                                    .form-control:focus {
+                                        outline: none;
+                                        box-shadow: 0 0 5px #81fcff;
+                                        border-color: #81fcff;
+                                    }
 
-                                select.form-control {
-                                    background-color: transparent;
-                                    color: #ffffff;
-                                }
+                                    .form-control.is-invalid {
+                                        border-color: #dc3545 !important;
+                                    }
 
-                                .btn {
-                                    width: 100%;
-                                    padding: 10px;
-                                    border-radius: 8px;
-                                    font-weight: bold;
-                                    transition: 0.3s ease;
-                                    margin-bottom: 10px;
-                                }
+                                    .form-control.is-valid {
+                                        border-color: #28a745 !important;
+                                    }
 
-                                .btn-primary {
-                                    background-color: #81fcff;
-                                    color: #002b2b;
-                                    border: none;
-                                }
+                                    .invalid-feedback {
+                                        color: #dc3545;
+                                        font-size: 0.875em;
+                                    }
 
-                                .btn-primary:hover {
-                                    background-color: #5ee7ea;
-                                    color: #001f1f;
-                                }
+                                    select.form-control {
+                                        background-color: transparent;
+                                        color: #ffffff;
+                                    }
 
-                                .btn-secondary {
-                                    background-color: transparent;
-                                    border: 1px solid #81fcff;
-                                    color: #81fcff;
-                                }
+                                    .btn {
+                                        width: 100%;
+                                        padding: 10px;
+                                        border-radius: 8px;
+                                        font-weight: bold;
+                                        transition: 0.3s ease;
+                                        margin-bottom: 10px;
+                                    }
 
-                                .btn-secondary:hover {
-                                    background-color: #81fcff;
-                                    color: #001f1f;
-                                }
+                                    .btn-primary {
+                                        background-color: #81fcff;
+                                        color: #002b2b;
+                                        border: none;
+                                    }
+
+                                    .btn-primary:hover {
+                                        background-color: #5ee7ea;
+                                        color: #001f1f;
+                                    }
+
+                                    .btn-secondary {
+                                        background-color: transparent;
+                                        border: 1px solid #81fcff;
+                                        color: #81fcff;
+                                    }
+
+                                    .btn-secondary:hover {
+                                        background-color: #81fcff;
+                                        color: #001f1f;
+                                    }
                             </style>
                         
                     </head>
@@ -1093,31 +1115,31 @@ app.get("/cadastrojogadores", verificarAutenticacao, (requisicao, resposta) =>{
                                 <div class="form-row row">
                                     <div class="form-group col-md-8 mb-1">
                                         <label for="nomejogador" class="mb-1">Nome do Jogador</label>
-                                        <input type="text" class="form-control" id="nomejogador" name="nomejogador" required placeholder="Nome completo">
+                                        <input type="text" class="form-control" id="nomejogador" name="nomejogador"  placeholder="Nome completo">
                                     </div>
                                 </div>
 
                                 <div class="form-row row">
                                     <div class="form-group col-md-4 mb-1">
                                         <label for="numero" class="mb-1">Número da Camisa</label>
-                                        <input type="number" class="form-control" id="numero" name="numero" required placeholder="Ex: 10" min="1">
+                                        <input type="number" class="form-control" id="numero" name="numero" placeholder="Ex: 10" min="1">
                                     </div>
 
                                     <div class="form-group col-md-4 mb-1">
                                         <label for="datanascimento" class="mb-1">Data de Nascimento</label>
-                                        <input type="date" class="form-control" id="datanascimento" name="datanascimento" required>
+                                        <input type="date" class="form-control" id="datanascimento" name="datanascimento" >
                                     </div>
                                 </div>
 
                                 <div class="form-row row">
                                     <div class="form-group col-md-4 mb-1">
                                         <label for="altura" class="mb-1">Altura (cm)</label>
-                                        <input type="number" class="form-control" id="altura" name="altura" required placeholder="Ex: 180" min="100">
+                                        <input type="number" class="form-control" id="altura" name="altura"  placeholder="Ex: 180" min="100">
                                     </div>
 
                                     <div class="form-group col-md-4 mb-1">
                                         <label for="genero" class="mb-1">Gênero</label>
-                                        <select class="form-control" id="genero" name="genero" required>
+                                        <select class="form-control" id="genero" name="genero" >
                                             <option value="" disabled selected>Selecione</option>
                                             <option value="Masculino">Masculino</option>
                                             <option value="Feminino">Feminino</option>
@@ -1129,14 +1151,14 @@ app.get("/cadastrojogadores", verificarAutenticacao, (requisicao, resposta) =>{
                                 <div class="form-row row">
                                     <div class="form-group col-md-6 mb-1">
                                         <label for="posicao" class="mb-1">Posição</label>
-                                        <input type="text" class="form-control" id="posicao" name="posicao" required placeholder="Ex: Ponteiro, Central, etc.">
+                                        <input type="text" class="form-control" id="posicao" name="posicao"  placeholder="Ex: Ponteiro, Central, etc.">
                                     </div>
                                 </div>
 
 
                                 <div class="form-group col-md-4 mb-1">
                                     <label for="equipe" class="mb-1">Equipe</label>
-                                    <select class="form-control" id="equipe" name="equipe" required>
+                                    <select class="form-control" id="equipe" name="equipe" >
                                         <option value="" disabled selected>Selecione uma equipe</option>
                                         ${opcoesEquipes}
                                     </select>
@@ -1162,6 +1184,16 @@ app.get("/cadastrojogadores", verificarAutenticacao, (requisicao, resposta) =>{
         const equipe = requisicao.body.equipe;
 
         if (nomejogador && numero && datanascimento && altura && genero && posicao && equipe) {
+
+            const jogadoresDaEquipe = listajogadores.filter(j => j.equipe === equipe);
+            if (jogadoresDaEquipe.length >= 6) {
+                return resposta.send(`
+                    <html><body>
+                        <p style="color:red;">A equipe "${equipe}" já possui 6 jogadores cadastrados.</p>
+                        <a href="/cadastrojogadores">Voltar</a>
+                    </body></html>
+                `);
+            }
             listajogadores.push({
                 nomejogador,
                 numero,
@@ -1183,7 +1215,7 @@ app.get("/cadastrojogadores", verificarAutenticacao, (requisicao, resposta) =>{
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
                         <style>
                            body {
-                                background-color: #042f31;
+                                background: linear-gradient(to bottom right,rgb(0, 0, 0), #042f31);
                                 font-family: 'Segoe UI', sans-serif;
                                 color: #ffffff;
                                 margin: 0;
@@ -1580,7 +1612,7 @@ app.get("/listajogadores", verificarAutenticacao, (requisicao, resposta) => {
                 conteudo=conteudo + `    </tbody>
                                         </table>
                                      </div>
-                                <a class="btn btn-secondary" href="/cadastroequipes">Continuar Cadastrando</a>
+                                <a class="btn btn-secondary" href="/cadastrojogadores">Continuar Cadastrando</a>
                             </div>
                         </body>
                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
