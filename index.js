@@ -825,7 +825,7 @@ app.post("/cadastroequipes", verificarAutenticacao, (requisicao, resposta) => {
                                                 conteudo = conteudo + `
                                                 <label for="inputtecnico" class="mb-1">Nome do Técnico</label>
                                                 <input type="text" class="form-control is-invalid" id="nometecnico" name="nometecnico" value="${nometecnico || ''}" placeholder="Nome do Técnico">
-                                                    <span class="text-danger">Insira o CNPJ</span>
+                                                    <span class="text-danger">Insira o nome do tecnico</span>
                                                 `;
                                                 } else {
                                                 conteudo = conteudo + `
