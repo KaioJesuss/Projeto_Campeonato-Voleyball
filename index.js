@@ -174,16 +174,8 @@ app.post("/Login", (requisicao, resposta)=>{
     if(usuario == "admin" && senha == "123")
     {
         requisicao.session.logado = true;
-        const agora = new Date();
-        const dia = String(agora.getDate()).padStart(2, '0');
-        const mes = String(agora.getMonth() + 1).padStart(2, '0');
-        const ano = agora.getFullYear();
-        const horas = String(agora.getHours()).padStart(2, '0');
-        const minutos = String(agora.getMinutes()).padStart(2, '0');
-        const segundos = String(agora.getSeconds()).padStart(2, '0');
-        const dataFormatada = `${dia}/${mes}/${ano} ${horas}:${minutos}:${segundos}`;
-
-        resposta.cookie('ultimoLogin', dataFormatada, { maxAge: 1000 * 60 * 60 * 24 * 30 });
+        const dataHorasAtuais = new Date();
+        resposta.cookie('ultimoLogin',dataHorasAtuais.toLocaleString(), { maxAge: 1000 * 60 * 60 * 24 * 30});
         resposta.redirect("/menu");
     }
     else 
